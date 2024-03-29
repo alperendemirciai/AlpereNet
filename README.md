@@ -55,7 +55,12 @@ X_test = np.random.randn(128, 100)
 predictions = model.predict(X_test)
 ```
 * You can check the `AlpereNet.ipynb` for the demonstration of usage with MNIST dataset.
-* Also you can check `example.py` for the script usage instead of Jupyter Notebook.
+* Also you can check `src/example.py` for the script usage on MNIST instead of Jupyter Notebook.
+
+## Results 
+* Achieved **%95.75** Accuracy on training data on **1000** epochs and learning rate as **0.5**.
+* Architecture used was **(784x128,ReLU) -> (128x64,ReLU) -> (64x32,ReLU) -> (32x10,Softmax)**
+* Training process completed about **4 minutes** on Apple M3 Pro 11C on CPU.
   
 ## Contributing
 

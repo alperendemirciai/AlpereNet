@@ -54,7 +54,8 @@ loss_history = model.fit(X_train, y_train, epochs=100, lr=0.01)
 X_test = np.random.randn(128, 100)
 predictions = model.predict(X_test)
 ```
-* You can check the `example.py` for the demonstration of usage with MNIST dataset.
+* You can check the `AlpereNet.ipynb` for the demonstration of usage with MNIST dataset.
+* Also you can check `example.py` for the script usage instead of Jupyter Notebook.
   
 ## Contributing
 

@@ -61,6 +61,14 @@ predictions = model.predict(X_test)
 * Achieved **%95.75** Accuracy on training data on **1000** epochs and learning rate as **0.5**.
 * Architecture used was **(784x128,ReLU) -> (128x64,ReLU) -> (64x32,ReLU) -> (32x10,Softmax)**
 * Training process completed about **4 minutes** on Apple M3 Pro 11C on CPU.
+
+## Media
+### Here are some of the predicted handwritten digits!
+![Here are some of the predicted handwritten digits!](plots/predictions.png)
+
+### Loss - Epoch plot 
+![Loss - Epoch plot](plots/epoch_loss.png)
+
   
 ## Contributing
 

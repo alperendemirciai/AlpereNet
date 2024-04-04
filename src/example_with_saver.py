@@ -50,11 +50,7 @@ AlpNet.add_layer(32, activation=AlpNet.leaky_relu, derivative=AlpNet.derivative_
 AlpNet.add_layer(10, activation=AlpereNet.softmax, derivative=AlpereNet.softmax)
 
 
-from saver import Saver
-saver = Saver('model_epoch500_lr0_5.json')
-model = saver.load()
-AlpNet.weights = model['weights']
-AlpNet.biases = model['biases']
+AlpNet.load('model_epoch500_lr0_5.json')
 
 pred = AlpNet.forward(X_train)
 pred = pd.DataFrame(pred)
@@ -80,23 +76,12 @@ predictions = AlpNet.predict(X_test)
 y_test_a = y_test.argmax(axis=0)
 print(f'Accuracy: {np.mean(predictions == y_test_a)}')
 
-
 preds = AlpNet.predict(X_train)
 y_train_a = y_train.argmax(axis=0)
 preds = pd.Series(preds)
 y_train_a = pd.Series(y_train_a)
 print("Predicted labels: ",preds.value_counts())
 print("Real labels: ",y_train_a.value_counts())
-
-import copy
-weights_trained = copy.deepcopy(AlpNet.weights)
-biases_trained = copy.deepcopy(AlpNet.biases)
-
-from saver import Saver
-saver = Saver('model_epoch500_lr0_5.json')
-saver.save({'weights': weights_trained, 'biases': biases_trained})
-
-
 
 def plot_image(image):
     plt.imshow(image.reshape(28, 28), cmap='gray')

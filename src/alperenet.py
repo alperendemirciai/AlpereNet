@@ -9,6 +9,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.utils import check_random_state
+from saver import Saver
 
 class AlpereNet:
     @staticmethod
@@ -122,3 +123,20 @@ class AlpereNet:
     
     def predict(self, X):
         return self.forward(X).argmax(axis=0)
+    
+    def save(self, path):
+        model = {'weights': self.weights, 'biases': self.biases}
+        saver = Saver(path)
+        saver.save(model)
+        print(f"Model saved to {path}")
+    
+    def load(self, path):
+        saver = Saver(path)
+        model = saver.load()
+        if(len(self.weights) != len(model['weights'])):
+            raise ValueError("Model is not compatible with the current model. Please check the model structure.")
+        
+        self.weights = model['weights']
+        self.biases = model['biases']
+        print(f"Model loaded from {path}")
+

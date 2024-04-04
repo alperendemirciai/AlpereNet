@@ -50,25 +50,31 @@ AlpNet.add_layer(32, activation=AlpNet.leaky_relu, derivative=AlpNet.derivative_
 AlpNet.add_layer(10, activation=AlpereNet.softmax, derivative=AlpereNet.softmax)
 
 
+from saver import Saver
+saver = Saver('model_epoch500_lr0_5.json')
+model = saver.load()
+AlpNet.weights = model['weights']
+AlpNet.biases = model['biases']
+
 pred = AlpNet.forward(X_train)
 pred = pd.DataFrame(pred)
 pred = pred.T
 pred.head()
 
-losses2= AlpNet.fit(X_train, y_train, epochs=500, lr=0.5)
-
 
 print(f'Test Accuracy: {np.mean(AlpNet.predict(X_test) == y_test.argmax(axis=0))}')
 print(f'Train Accuracy: {np.mean(AlpNet.predict(X_train) == y_train.argmax(axis=0))}')
-print(f'Final Loss: {losses2[-1]}')
+#print(f'Final Loss: {losses2[-1]}')
 print("Shapes of the data:")
 print(X_train.shape, y_train.shape, X_test.shape, y_test.shape)
 
+"""
 plt.plot(losses2)
 plt.title('Loss vs Epochs')
 plt.xlabel('Epochs')
 plt.ylabel('Loss')
 plt.show()
+"""
 
 predictions = AlpNet.predict(X_test)
 y_test_a = y_test.argmax(axis=0)

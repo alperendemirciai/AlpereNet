@@ -10,7 +10,7 @@ from alperenet import AlpereNet
 random_state = check_random_state(42)
 
 # Load data from CSV
-data = pd.read_csv('train.csv')
+data = pd.read_csv('src/train.csv')
 
 # Separate features and labels
 X = data.drop(columns=['label'])  # Features
@@ -55,7 +55,7 @@ pred = pd.DataFrame(pred)
 pred = pred.T
 pred.head()
 
-losses2= AlpNet.fit(X_train, y_train, epochs=1000, lr=0.5)
+losses2= AlpNet.fit(X_train, y_train, epochs=500, lr=0.5)
 
 
 print(f'Test Accuracy: {np.mean(AlpNet.predict(X_test) == y_test.argmax(axis=0))}')
@@ -85,6 +85,7 @@ print("Real labels: ",y_train_a.value_counts())
 import copy
 weights_trained = copy.deepcopy(AlpNet.weights)
 biases_trained = copy.deepcopy(AlpNet.biases)
+
 
 def plot_image(image):
     plt.imshow(image.reshape(28, 28), cmap='gray')
